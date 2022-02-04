@@ -16,7 +16,7 @@
             padding: 0;
         }
         html{
-            font-family: 'Lato','Montserrat' sans-serif;
+            font-family: 'Lato', sans-serif;
 
             --black: black;
             --blue-home:#0a72b3;
@@ -36,8 +36,6 @@
             height: 14vh;
             justify-content: space-evenly;
             z-index: 1;
-            
-            
         }
 
         .logo {
@@ -45,7 +43,7 @@
         }
         h1{
             color:var(--white);
-            font-family: 'Lato', sans-serif;
+            
             font-weight: 400;
             text-transform: uppercase;
             
@@ -59,7 +57,7 @@
         
         .input--date-container p {
             color: var(--white);
-            font-family: 'Lato', sans-serif;
+            
             font-weight: 300;
             text-transform: uppercase;
         }
@@ -67,7 +65,6 @@
         .input--date-container input{
             border-radius: 50rem;
             border: none;
-            font-family: 'Lato';
             font-size: 12px;
             height: 37px;
             margin:4px 14px 4px 14px;            
@@ -94,6 +91,7 @@
             background-color: var(--white);
             box-shadow: 0.5px 10px 30px 1px var(--grey-title);
             display: flex;
+            flex-direction: column;
             height:86vh;
             justify-content: center;
             width:21vw;
@@ -108,18 +106,60 @@
             width: 100%;
         }
 
+        .sidebar--user-container {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 75%;
+            
+        }
+        .sidebar-user-name{
+            color: var(--grey-title);
+            font-family: 'Montserrat';
+            text-transform: uppercase;
+        }
+        .user-background{
+            background-color: var(--grey-background);
+            height: 75px;
+            width: 75px ;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+        }
+
+        .user-head{
+            background-color: var(--grey-paragraph);
+            border-radius: 50%;
+            height: 25px;
+            margin-bottom: 3px;
+            opacity: 0.5;
+            width: 25px;
+        }
+
+        .user-body{            
+            border-bottom: 25px solid var(--grey-paragraph);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            height: 0px;
+            opacity: 0.5;
+            width: 40px;
+        }
         .sidebar--button{
             background-color: var(--white);            
-            width: 55%;
+            border-radius: 28px;
+            border:none;
+            box-shadow: 0.5px 2px 8px 1px var(--grey-title);
+            cursor: pointer;
+            font-size: 1.4rem;
             height: 20vh;
             margin-top: 16px;
-            border:none;
-            border-radius: 28px;
-            cursor: pointer;
-            box-shadow: 0.5px 2px 8px 1px var(--grey-title);
-            font-size: 1.4rem;
-            text-transform: capitalize;
+            overflow: hidden;
             padding: 5px;
+            text-transform: capitalize;
+            width: 55%;
         }
 
         .dashboard svg{
@@ -189,8 +229,11 @@
     <main>
         <div class="sidebar-container">
             <div class="sidebar--user-container">
-                <picture class="sidebar-user-pic--container"><img/></picture>
-                <h3 class="sidebar-user-name"></h3>
+                <div class="user-background">
+                    <div class="user-head"></div>
+                    <div class="user-body"></div>
+                </div>
+                <h3 class="sidebar-user-name">John Doe</h3>
             </div>
             <div class="sidebar--menu-container">
                 <button class="sidebar--button dashboard"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 195.79 85.15"><defs><style>.cls-1,.cls-2{fill:none;stroke-miterlimit:10;stroke-width:4px;}.cls-1{stroke:var(--green-wave);}.cls-2{stroke:var(--blue-wave);}</style></defs><g id="Capa_2" data-name="Capa 2"><g id="Grid"><path class="cls-1" d="M1.92,34.17c3.4,11.49,7.73,22.71,11.94,22.42C22.94,56,24.6,2.08,31.4,2c6.57-.08,10,50.14,19.5,50.44,6.5.22,9.89-23.36,16.33-23.15,9.4.31,11.7,50.85,19.49,51.18,9.69.41,19.64-77.14,26.81-76.52,5.43.47,3.48,45.2,13.65,47,8.54,1.54,15.75-29,29.73-29.48,10.63-.35,19.88,16.91,26.07,31.68"/><path class="cls-2" d="M12.88,36.85c3.41,11.49,7.74,22.71,11.94,22.42,9.09-.63,10.75-54.51,17.55-54.59,6.57-.08,10,50.14,19.5,50.45,6.5.21,9.88-23.36,16.32-23.16,9.41.31,11.71,50.85,19.5,51.18,9.68.41,19.64-77.13,26.81-76.52,5.42.47,3.48,45.2,13.64,47,8.55,1.54,15.76-29,29.73-29.48,10.64-.35,19.89,16.91,26.08,31.68"/>
