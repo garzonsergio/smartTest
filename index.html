@@ -7,7 +7,164 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script type="module">
+        
+        class boxInfo extends HTMLElement {
+            constructor(){
+            super();
+            this.attachShadow({mode: "open"});          
+           
+            }
+
+            static get observedAttributes(){
+                return ["logocompany","lastmonth", "last30days", "wholerecords"];
+
+            }
+
+            attributeChangedCallback(attr, oldVal, newVal){
+                this[attr] = newVal;
+
+            }
+
+            getTemplate(){
+                const template= document.createElement('template');
+                template.innerHTML =`
+                <section>
+                    <picture>
+                        <img src=${this.logocompany} alt="image in-building"/>
+                    <picture>
+                    <div class="info-text--container">
+                        <p>Portal inmobiliario de Colombia donde compras,vendes, arriendas todo tipo de inmuebles.</p>
+                    </div>
+                    <div class="info-values--container">
+                        <div>
+                            <h5>mes anterior</h5>
+                            <p class="info-values green">${this.lastmonth}</p>
+                        </div>
+                        <div>
+                            <h5>últimos 30 dias</h5>
+                            <p class="info-values red">${this.last30days}</p>
+                        </div>
+                        <div>
+                            <h5>total registrados</h5>
+                            <p class="info-values blue">${this.wholerecords}</p>
+                        </div>                        
+                    </div>
+                    <button>ver clientes</button>
+                </section>
+                ${this.getStyles()}
+                `;
+                return template
+            }
+            getStyles(){
+                return`
+                
+                <style>
+                :host{
+                    background-color: var(--white);
+                    border-radius: 10px;
+                    box-shadow: 0.5px 10px 30px 1px var(--grey-title);
+                    display: flex;
+                    font-size: 16px;
+                    width: 320px;
+                    
+                }
+                section{
+                    position:relative;
+                }
+                picture {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-flow: column;
+                    margin: 0;
+                    padding: 0;
+                    
+                }
+                img{
+                    align-self: center;
+                    height: 55px;
+                    margin: 0;
+                    padding: 0;
+                    width: fit-content;
+                }
+                
+
+                .info-text--container{
+                    align-items:center;
+                    display: flex;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .info-text--container p {
+                    margin-top: 0;
+                }
+
+                                
+                .info-values--container{
+                    display:flex;                   
+                    justify-content: space-evenly;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .info-values--container div{
+                    width: 70px;
+                    margin-bottom: 45px;
+                }
+
+                .info-values{
+                    color: var(--white);
+                    font-weight: 900;
+                    border-radius: 5px;
+                    margin:0;
+                    
+                }
+
+                .red {
+                    background-color: var(--red-minus);
+                }
+                .green {
+                    background-color: var(--green-plus);
+                }
+                .blue {
+                    background-color: var(--blue-home);
+                }
+
+                h5{
+                    text-transform: capitalize;
+                    font-weight: 700;
+                    margin:0;
+                }
+                button{
+                    background-color: var(--blue-home);
+                    border-radius: 0 0 10px 10px;
+                    border: none;
+                    color: var(--white);
+                    cursor: pointer;
+                    font-weight: 900;
+                    height: 30px;
+                    text-transform: uppercase;
+                    width: 100%;
+                    position:absolute;
+                    bottom: 0;
+                    
+                }
+                </style>    
+                `
+            }
+
+            render() {
+                this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));              
+            }
+            connectedCallback(){
+                this.render();
+            }
+        }
+        customElements.define("box-info", boxInfo)
+    </script>  
+    
     <style>
         
         *{
@@ -38,7 +195,7 @@
             z-index: 1;
         }
 
-        .logo {
+        .logo{
             height: 81px;
         }
         h1{
@@ -76,7 +233,7 @@
         .input--date-container input[type="date"]::-webkit-calendar-picker-indicator{
             background: url(https://www.svgrepo.com/show/145159/down-arrow.svg) no-repeat;
             border-width: thin;
-            color: rgba(0, 0, 0, 0);
+            color: var(--black);
             display: flex;
             justify-content: flex-end;
             opacity: 0.5;
@@ -196,16 +353,26 @@
             z-index: 3;
             justify-content: center;
             align-items: center;
+            
 
         }
 
         .main--content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            flex-wrap: wrap;
             background-color: var(--white);
+            column-gap: 15px;
+            row-gap: 30px;
             width:74vw;
-            height:72vh;
+            height: 80vh;
             box-shadow: 0.5px 10px 30px 1px var(--grey-title);
             border-radius: 27px;
             z-index: 5;
+            justify-items: center;
+            align-items: center;
+            overflow: hidden;           
 
         }
 
@@ -243,7 +410,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.33 72.58"><defs><style>.cls-3{fill:none;stroke:var(--white);stroke-miterlimit:10;stroke-width:4px;}</style></defs><g id="Capa_2" data-name="Capa 2"><g id="Grid"><line class="cls-3" x1="90.91" y1="1.41" x2="21.16" y2="71.16"/><line class="cls-3" x1="1.41" y1="49.41" x2="21.16" y2="69.16"/></g></g></svg>
                     <p>clientes cargados</p>
                 </button>
-                <button class="sidebar--button customersError"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84.83 84.83"><defs><style>.cls-4{fill:none;stroke:#d80024;stroke-miterlimit:10;stroke-width:4px;}</style></defs><g id="Capa_2" data-name="Capa 2"><g id="Grid"><line class="cls-4" x1="1.41" y1="1.41" x2="83.41" y2="83.41"/><line class="cls-4" x1="83.41" y1="1.41" x2="1.41" y2="83.41"/></g></g></svg>
+                <button class="sidebar--button customersError"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84.83 84.83"><defs><style>.cls-4{fill:none;stroke:var(--red-minus);stroke-miterlimit:10;stroke-width:4px;}</style></defs><g id="Capa_2" data-name="Capa 2"><g id="Grid"><line class="cls-4" x1="1.41" y1="1.41" x2="83.41" y2="83.41"/><line class="cls-4" x1="83.41" y1="1.41" x2="1.41" y2="83.41"/></g></g></svg>
                     <p>clientes con error</p>
                 </button>
             </div>
@@ -251,7 +418,37 @@
         
         <div class="main--content-container">
             <div class="main--content-wrapper">
-                <script></script>
+                <box-info
+                logocompany="https://dwglogo.com/wp-content/uploads/2017/09/1460px-React_logo.png"
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>
+                <box-info 
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>  
+                <box-info 
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>  
+                <box-info 
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>  
+                <box-info 
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>  
+                <box-info 
+                lastmonth="50"
+                last30days="30"
+                wholerecords ="13">
+                </box-info>    
             </div>
         </div>
     </main>
