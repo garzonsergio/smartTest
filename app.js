@@ -9,7 +9,7 @@ app.use("/", homeRouter);
 app.use("/customer", customerRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Check your port https://localhost:${port}`);
 });
 
 module.exports = app;
