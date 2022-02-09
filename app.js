@@ -3,7 +3,7 @@ var app = express();
 var homeRouter = require("./routes/index");
 var customerRouter = require("./routes/customers");
 
-const port = 7000;
+const port = process.env.PORT;
 
 app.use("/", homeRouter);
 app.use("/customer", customerRouter);
