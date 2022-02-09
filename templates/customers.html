@@ -11,8 +11,10 @@
 
             try{
 
-                let url = window.location.href;
-                let pageNumber = url.substring(31,32);
+                const url = window.location.href;
+                const regex = new RegExp('[^/]+(?=/$|$)');
+
+                const pageNumber = url.match(regex)[0];
                 console.log("TCL ~ file: customers.html ~ line 16 ~ loadData ~ pageNumber", pageNumber)
                 
 

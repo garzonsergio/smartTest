@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "local": "set HOST=localhost&& set PORT=7000&& node server.js"
+    "local": "export PORT=7000 && node app.js "
   },
   "author": "garzonsergio",
   "license": "ISC",
