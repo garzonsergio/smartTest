@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script>
+      
         const loadData = async ()=> {
 
             try{
@@ -35,7 +36,7 @@
             }
 
             static get observedAttributes(){
-                return ["logocompany","lastmonth", "last30days", "wholerecords"];
+                return ["logocompany","lastmonth", "last30days", "wholerecords", "supplierid"];
 
             }
 
@@ -45,11 +46,13 @@
             }
 
             getTemplate(){
+
+                
                 const template= document.createElement('template');
                 template.innerHTML =`
                 <section>
                     <picture>
-                        <img src=${this.logocompany} alt="image in-building"/>
+                        <img src="${this.logocompany}" alt="image in-building"/>
                     <picture>
                     <div class="info-text--container">
                         <p>Portal inmobiliario de Colombia donde compras,vendes, arriendas todo tipo de inmuebles.</p>
@@ -68,7 +71,7 @@
                             <p class="info-values blue">${this.wholerecords}</p>
                         </div>                        
                     </div>
-                    <button>ver clientes</button>
+                    <button><a href="/customer/${this.supplierid}">ver clientes</a></button>
                 </section>
                 ${this.getStyles()}
                 `;
@@ -155,7 +158,6 @@
                     background-color: var(--blue-home);
                     border-radius: 0 0 10px 10px;
                     border: none;
-                    color: var(--white);
                     cursor: pointer;
                     font-weight: 900;
                     height: 30px;
@@ -164,6 +166,11 @@
                     position:absolute;
                     bottom: 0;
                     
+                }
+
+                button a{
+                    text-decoration:none;
+                    color: var(--white);
                 }
 
                 button:hover{
@@ -446,41 +453,47 @@
         
         <div class="main--content-container">
             <div class="main--content-wrapper">
-                <box-info
+                <box-info class="supplier1"
                 logocompany="https://bit.ly/3uy6FHF"
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="1">
                 </box-info>
-                <box-info
+                <box-info class="supplier2"
                 logocompany="https://bit.ly/3J4NiK8"
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="2">
                 </box-info>  
-                <box-info
+                <box-info class="supplier3"
                 logocompany="https://bit.ly/34t4quq" 
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="3">
                 </box-info>  
-                <box-info
+                <box-info class="supplier4"
                 logocompany="https://bit.ly/3srboYO"
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="4">
                 </box-info>  
-                <box-info
+                <box-info class="supplier5"
                 logocompany="https://bit.ly/35PrVyd" 
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="5">
                 </box-info>  
-                <box-info
+                <box-info class="supplier6"
                 logocompany="https://bit.ly/34hjc7O"
                 lastmonth="50"
                 last30days="30"
-                wholerecords ="13">
+                wholerecords ="13"
+                supplierid ="6">
                 </box-info>    
             </div>
         </div>
