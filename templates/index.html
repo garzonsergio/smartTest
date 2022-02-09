@@ -71,7 +71,7 @@
                             <p class="info-values blue">${this.wholerecords}</p>
                         </div>                        
                     </div>
-                    <button><a href="/customer/${this.supplierid}">ver clientes</a></button>
+                    <a href="/customer/${this.supplierid}"><button>ver clientes</button></a>
                 </section>
                 ${this.getStyles()}
                 `;
@@ -158,19 +158,20 @@
                     background-color: var(--blue-home);
                     border-radius: 0 0 10px 10px;
                     border: none;
+                    bottom: 0;
+                    color: var(--white);
                     cursor: pointer;
                     font-weight: 900;
                     height: 30px;
+                    position:absolute;
                     text-transform: uppercase;
                     width: 100%;
-                    position:absolute;
-                    bottom: 0;
                     
                 }
 
                 button a{
                     text-decoration:none;
-                    color: var(--white);
+                    
                 }
 
                 button:hover{
